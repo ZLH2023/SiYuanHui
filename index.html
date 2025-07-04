@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>思源汇 - 思政案例分享平台 | 弘扬社会主义核心价值观</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 保留原有样式不变 */
+        :root {
+            --primary: #c7000b;
+            --primary-dark: #9e0000;
+            --primary-light: #ff5a5f;
+            --secondary: #f5f5f5;
+            --accent: #ffc107;
+            --dark: #333;
+            --light: #fff;
+            --gray: #f0f0f0;
+            --text: #444;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Microsoft YaHei', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--light);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        .back-to-top i {
+            font-size: 1.5rem;
+        }
+
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .slides {
+            display: flex;
+            transition: transform 0.8s ease;
+            height: 100%;
+        }
+        
+        .slide {
+            flex: 0 0 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.4s;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(199, 0, 11, 0.8), rgba(158, 0, 0, 0.8));
+            z-index: 1;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background-color: var(--accent);
+            transform: scale(1.2);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* 第一张图片效果 - 放大+旋转 */
+        .feature-card:nth-child(1) .feature-img img {
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:nth-child(1):hover .feature-img img {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        /* 第二张图片效果 - 放大+水平偏移 */
+        .feature-card:nth-child(2) .feature-img img {
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:nth-child(2):hover .feature-img img {
+            transform: scale(1.1) translateX(-10px);
+        }
+
+        /* 第三张图片效果 - 放大+垂直偏移 */
+        .feature-card:nth-child(3) .feature-img img {
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:nth-child(3):hover .feature-img img {
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        .feature-content {
+            padding: 25px;
+        }
+
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Cases Section */
+        .cases {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
+
+        .cases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 新增的图片遮罩层 */
+        .case-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none; /* 确保不影响下方元素的点击 */
+        }
+        
+        .case-card:hover .case-image-overlay {
+            opacity: 0.8; /* 半透明效果 */
+        }
+        
+        .case-header {
+            padding: 20px;
+            background: var(--primary);
+            color: var(--light);
+            position: relative;
+            z-index: 2; /* 确保内容在遮罩上方 */
+        }
+
+        .case-header h3 {
+            color: var(--light);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .case-body {
+            padding: 20px;
+            position: relative;
+            z-index: 2; /* 确保内容在遮罩上方 */
+        }
+
+        .case-body p {
+            margin-bottom: 20px;
+        }
+
+        .case-footer {
+            padding: 15px 20px;
+            background: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 3; /* 确保按钮在遮罩上方并可点击 */
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--light);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Video Section */
+        .videos {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: var(--light);
+        }
+
+        .videos .section-title h2 {
+            color: var(--light);
+        }
+
+        .videos .section-title h2:after {
+            background: var(--accent);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 180px;
+            overflow: hidden; /* 确保浮动效果不会溢出 */
+        }
+        
+        /* 新增视频播放器样式 */
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000;
+            display: block;
+        }
+        
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* 新增左右浮动动画 */
+        @keyframes float-horizontal {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        /* 为三张视频卡片应用不同的浮动效果 */
+        .video-card:nth-child(1) .video-poster {
+            animation: float-horizontal 4s ease-in-out infinite;
+        }
+        
+        .video-card:nth-child(2) .video-poster {
+            animation: float-horizontal 5s ease-in-out infinite;
+            animation-delay: 0.5s; /* 错开动画时间 */
+        }
+        
+        .video-card:nth-child(3) .video-poster {
+            animation: float-horizontal 6s ease-in-out infinite;
+            animation-delay: 1s; /* 错开动画时间 */
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .play-btn i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-left: 5px;
+        }
+
+        .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--light);
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Subscription Section */
+        .subscribe {
+            padding: 80px 0;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .subscribe-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .subscribe-box h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-box p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .subscribe-form input:focus {
+            border-color: var(--primary);
+        }
+
+        .subscribe-form button {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 5px 5px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .subscribe-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* 登录/注册模态框样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .auth-modal {
+            background: var(--light);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .modal-overlay.active .auth-modal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--light);
+            padding: 25px 30px;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            color: var(--light);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--accent);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(199, 0, 11, 0.2);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .switch-form {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .switch-form:hover {
+            color: var(--primary-dark);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .additional-options {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            color: #777;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background: #e0e0e0;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .wechat-btn {
+            color: #09bb07;
+        }
+
+        .weibo-btn {
+            color: #e6162d;
+        }
+
+        .qq-btn {
+            color: #12b7f5;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .slide-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .subscribe-form input,
+            .subscribe-form button {
+                width: 100%;
+                border-radius: 5px;
+            }
+
+            .auth-modal {
+                width: 90%;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .carousel {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .switch-form {
+                order: 2;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .carousel {
+                height: 450px;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+		
+		/* 添加新的关键帧动画 */
+		@keyframes shape-shift {
+		    0% {
+		        border-radius: 0;
+		        transform: scale(1) rotate(0deg);
+		    }
+		    25% {
+		        border-radius: 50% 20% 50% 20%;
+		        transform: scale(1.1) rotate(10deg);
+		    }
+		    50% {
+		        border-radius: 20% 50% 20% 50%;
+		        transform: scale(1.15) rotate(-10deg);
+		    }
+		    75% {
+		        border-radius: 40% 40% 10% 10%;
+		        transform: scale(1.1) rotate(5deg);
+		    }
+		    100% {
+		        border-radius: 0;
+		        transform: scale(1) rotate(0deg);
+		    }
+		}
+		
+		/* 移除原有的图片悬停效果 */
+		.feature-card:nth-child(1) .feature-img img,
+		.feature-card:nth-child(2) .feature-img img,
+		.feature-card:nth-child(3) .feature-img img {
+		    transition: none !important;
+		}
+		
+		.feature-card:nth-child(1):hover .feature-img img,
+		.feature-card:nth-child(2):hover .feature-img img,
+		.feature-card:nth-child(3):hover .feature-img img {
+		    transform: none !important;
+		}
+		
+		/* 应用新的动画效果 */
+		.feature-img img {
+		    animation: shape-shift 12s infinite ease-in-out;
+		    transform-origin: center center;
+		}
+		
+		/* 为三张卡片设置不同的动画延迟 */
+		.feature-card:nth-child(1) .feature-img img {
+		    animation-delay: 0s;
+		}
+		
+		.feature-card:nth-child(2) .feature-img img {
+		    animation-delay: 4s;
+		}
+		
+		.feature-card:nth-child(3) .feature-img img {
+		    animation-delay: 8s;
+		}
+		
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open fa-2x"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>思源汇</h1>
+                    <p>思政案例分享平台 · 弘扬社会主义核心价值观</p>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="anli.html">案例库</a></li>
+                    <li><a href="xinde.html">心得体会</a></li>
+                    <li><a href="huodong.html">活动报道</a></li>
+                    <li><a href="shiping.html">视频访谈</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline" id="loginBtn">登录</a>
+                <a href="#" class="btn btn-primary" id="registerBtn">注册</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 轮播图替换原横幅部分 -->
+    <section class="carousel">
+        <div class="slides">
+            <!-- 轮播图1 -->
+            <div class="slide" style="background-image: url('img/gaoxiao.jpg')">
+                <div class="slide-content">
+                    <h2>汇聚思政教育力量 培育时代新人</h2>
+                    <p>本平台致力于收集和分享优秀思政教育案例，展示先进党员事迹，传播社会实践活动成果，为思政教育工作者提供丰富的教学资源和实践参考。</p>
+                    <div class="hero-btns">
+                        <a href="anli.html" class="btn btn-primary">浏览案例</a>
+                        <a href="tuogao.html" class="btn btn-outline">投稿分享</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播图2 -->
+            <div class="slide" style="background-image: url('img/009.jpg')">
+                <div class="slide-content">
+                    <h2>创新思政教育模式 提升育人实效</h2>
+                    <p>探索思政教育新方法、新途径，打造具有时代特色、学校特色、专业特色的思政教育体系，培养德智体美劳全面发展的社会主义建设者和接班人。</p>
+                    <div class="hero-btns">
+                        <a href="huodong.html" class="btn btn-primary">活动报道</a>
+                        <a href="xinde.html" class="btn btn-outline">心得体会</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播图3 -->
+            <div class="slide" style="background-image: url('img/gongjiang.jpg')">
+                <div class="slide-content">
+                    <h2>深化课程思政建设 落实立德树人</h2>
+                    <p>全面推进课程思政建设，将思想政治教育融入各类课程教学，实现知识传授与价值引领的有机统一，构建全员全过程全方位育人格局。</p>
+                    <div class="hero-btns">
+                        <a href="shiping.html" class="btn btn-primary">视频访谈</a>
+                        <a href="anli.html" class="btn btn-outline">案例库</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 导航按钮 -->
+        <div class="carousel-nav">
+            <div class="nav-btn prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="nav-btn next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- 指示器 -->
+        <div class="carousel-controls">
+            <div class="carousel-indicator active"></div>
+            <div class="carousel-indicator"></div>
+            <div class="carousel-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>平台特色</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-img">
+                        <img src="img/007.jpg" 
+                             alt="思政案例">
+                    </div>
+                    <div class="feature-content">
+                        <h3>丰富案例资源</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收集整理全国优秀思政教育案例，涵盖高校、中小学、企事业单位等各个领域，提供多样化的教学参考。</p>
+                        <a href="anli.html" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-img">
+                        <img src="img/112.jpg" 
+                             alt="视频资源">
+                    </div>
+                    <div class="feature-content">
+                        <h3>多媒体资源库</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提供视频访谈、纪录片、微课等多媒体资源，满足不同教学场景的需求，增强教学效果。</p>
+                        <a href="shiping.html" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-img">
+                        <img src="img/113.jpg" 
+                             alt="交流平台">
+                    </div>
+                    <div class="feature-content">
+                        <h3>互动交流平台</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创建教师交流社区，分享教学心得，探讨思政教育新方法，促进经验共享和共同成长。</p>
+                        <a href="xinde.html" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="cases">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>精选思政案例</h2>
+            </div>
+
+            <div class="cases-container">
+                <div class="case-card fade-in delay-1">
+                    <!-- 新增图片遮罩层 -->
+                    <div class="case-image-overlay" style="background-image: url('img/013.jpg')"></div>
+                    
+                    <div class="case-header">
+                        <h3>红色基因代代传：高校党史教育创新实践</h3>
+                        <div class="case-meta">
+                            <span><i class="fas fa-user"></i> 张教授</span>
+                            <span><i class="fas fa-calendar"></i> 2023-05-12</span>
+                        </div>
+                    </div>
+                    <div class="case-body">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本项目创新性地将地方红色资源融入高校党史教育，通过"行走的课堂"形式，组织学生实地探访革命遗址，开展沉浸式学习</p>
+                    </div>
+                    <div class="case-footer">
+                        <div class="tags">
+                            <span class="tag">党史教育</span>
+                            <span class="tag">创新实践</span>
+                            <span class="tag">高校思政</span>
+                        </div>
+                        <a href="anli.html" class="btn btn-primary">详情</a>
+                    </div>
+                </div>
+
+                <div class="case-card fade-in delay-2">
+                    <!-- 新增图片遮罩层 -->
+                    <div class="case-image-overlay" style="background-image: url('img/shequ.jpg')"></div>
+                    
+                    <div class="case-header">
+                        <h3>社区志愿服务：大学生社会实践新模式</h3>
+                        <div class="case-meta">
+                            <span><i class="fas fa-user"></i> 李老师</span>
+                            <span><i class="fas fa-calendar"></i> 2023-04-28</span>
+                        </div>
+                    </div>
+                    <div class="case-body">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;探索"专业+服务"的大学生社会实践模式，组织不同专业学生深入社区，开展专业特色志愿服务，将专业知识与社会需求紧密结合</p>
+                    </div>
+                    <div class="case-footer">
+                        <div class="tags">
+                            <span class="tag">社会实践</span>
+                            <span class="tag">志愿服务</span>
+                            <span class="tag">社区共建</span>
+                        </div>
+                        <a href="anli.html" class="btn btn-primary">详情</a>
+                    </div>
+                </div>
+
+                <div class="case-card fade-in delay-3">
+                    <!-- 新增图片遮罩层 -->
+                    <div class="case-image-overlay" style="background-image: url('img/gongjiang.jpg')"></div>
+                    
+                    <div class="case-header">
+                        <h3>工匠精神培育：职业院校思政教育创新</h3>
+                        <div class="case-meta">
+                            <span><i class="fas fa-user"></i> 王校长</span>
+                            <span><i class="fas fa-calendar"></i> 2023-04-15</span>
+                        </div>
+                    </div>
+                    <div class="case-body">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将工匠精神培育融入职业院校思政教育体系，通过"大国工匠进校园"、"技能大师工作室"等形式，培养学生精益求精的职业态度</p>
+                    </div>
+                    <div class="case-footer">
+                        <div class="tags">
+                            <span class="tag">工匠精神</span>
+                            <span class="tag">职业教育</span>
+                            <span class="tag">课程思政</span>
+                        </div>
+                        <a href="anli.html" class="btn btn-primary">详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="videos">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>视频访谈</h2>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card fade-in delay-1">
+                    <div class="video-thumbnail">
+                        <!-- 视频播放器 -->
+                        <video class="video-player" poster="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1471">
+                            <source src="video/00007.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 视频封面图 -->
+                        <img class="video-poster" src="img/jiao.jpg" alt="访谈视频">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>对话全国优秀思政教师</h3>
+                        <p>全国思政教学比赛一等奖获得者分享教学经验</p>
+                    </div>
+                </div>
+
+                <div class="video-card fade-in delay-2">
+                    <div class="video-thumbnail">
+                        <!-- 视频播放器 -->
+                        <video class="video-player" poster="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1468">
+                            <source src="video/dangyuan.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 视频封面图 -->
+                        <img class="video-poster" src="img/001.jpg" alt="访谈视频">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>红色记忆：老党员的初心故事</h3>
+                        <p>90岁老党员讲述革命年代的奋斗历程</p>
+                    </div>
+                </div>
+
+                <div class="video-card fade-in delay-3">
+                    <div class="video-thumbnail">
+                        <!-- 视频播放器 -->
+                        <video class="video-player" poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470">
+                            <source src="video/00003.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 视频封面图 -->
+                        <img class="video-poster" src="img/shehui.jpg" alt="访谈视频">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>社会实践成果展示</h3>
+                        <p>大学生暑期社会实践优秀团队汇报展示</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section class="subscribe">
+        <div class="container">
+            <div class="subscribe-box fade-in">
+                <h2>订阅最新思政资源</h2>
+                <p>订阅我们的通讯，每月获取精选思政案例、教学资源和活动通知</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="请输入您的电子邮箱" required>
+                    <button type="submit">订阅</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>思政案例分享平台</h3>
+                    <p>致力于打造全国最专业的思政教育资源分享平台，为思政教育工作者提供丰富的教学资源和实践参考。</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 思政案例分享平台 版权所有 | 赵利宏20235104163</p>
+            </div>
+        </div>
+    </footer>
+
+  <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <!-- 登录模态框 -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="auth-modal">
+            <div class="modal-header">
+                <h2>用户登录</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名</label>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="请输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="请输入密码" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox"> 记住登录状态
+                        </label>
+                    </div>
+                    <div class="form-footer">
+                        <button type="button" class="switch-form" id="switchToRegister">注册新账号</button>
+                        <button type="submit" class="submit-btn">登录</button>
+                    </div>
+                </form>
+
+                <div class="additional-options">
+                    <div class="divider">
+                        <span>其他登录方式</span>
+                    </div>
+                    <div class="social-login">
+                        <button class="social-btn wechat-btn">
+                            <i class="fab fa-weixin"></i>
+                        </button>
+                        <button class="social-btn weibo-btn">
+                            <i class="fab fa-weibo"></i>
+                        </button>
+                        <button class="social-btn qq-btn">
+                            <i class="fab fa-qq"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="auth-modal">
+            <div class="modal-header">
+                <h2>用户注册</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <input type="text" id="registerUsername" class="form-control" placeholder="请输入用户名（4-16位字符）"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">电子邮箱</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="请输入电子邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <input type="password" id="registerPassword" class="form-control" placeholder="请输入密码（至少6位）"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">确认密码</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="请再次输入密码"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required> 我已阅读并同意<a href="#">《用户服务协议》</a>
+                        </label>
+                    </div>
+                    <div class="form-footer">
+                        <button type="button" class="switch-form" id="switchToLogin">已有账号？立即登录</button>
+                        <button type="submit" class="submit-btn">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelector('.slides');
+            const slideItems = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentIndex = 0;
+            const totalSlides = slideItems.length;
+            let autoPlayInterval;
+            
+            // 更新轮播位置
+            function updateSlidePosition() {
+                slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // 更新指示器状态
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // 下一张
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlidePosition();
+            }
+            
+            // 上一张
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlidePosition();
+            }
+            
+            // 设置自动播放
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // 停止自动播放
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+            
+            // 事件监听
+            nextBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                nextSlide();
+                startAutoPlay();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                prevSlide();
+                startAutoPlay();
+            });
+            
+            // 指示器点击事件
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    stopAutoPlay();
+                    currentIndex = index;
+                    updateSlidePosition();
+                    startAutoPlay();
+                });
+            });
+            
+            // 启动自动播放
+            startAutoPlay();
+            
+            // 鼠标悬停暂停轮播
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+            
+            // 模态框控制
+            const loginModal = document.getElementById('loginModal');
+            const registerModal = document.getElementById('registerModal');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            const switchToRegister = document.getElementById('switchToRegister');
+            const switchToLogin = document.getElementById('switchToLogin');
+
+            // 打开登录模态框
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.classList.add('active');
+            });
+
+            // 打开注册模态框
+            registerBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerModal.classList.add('active');
+            });
+
+            // 关闭模态框
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    loginModal.classList.remove('active');
+                    registerModal.classList.remove('active');
+                });
+            });
+
+            // 点击模态框背景关闭
+            [loginModal, registerModal].forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+
+            // 切换登录/注册表单
+            switchToRegister.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+                registerModal.classList.add('active');
+            });
+
+            switchToLogin.addEventListener('click', () => {
+                registerModal.classList.remove('active');
+                loginModal.classList.add('active');
+            });
+
+            // 表单提交处理
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+
+                // 简单验证
+                if (username && password) {
+                    alert(`欢迎回来，${username}！登录成功`);
+                    loginModal.classList.remove('active');
+
+                    // 更新头部按钮状态
+                    loginBtn.textContent = username;
+                    loginBtn.classList.remove('btn-outline');
+                    loginBtn.classList.add('btn-primary');
+                    loginBtn.style.pointerEvents = 'none';
+
+                    registerBtn.textContent = '退出';
+                    registerBtn.onclick = function() {
+                        if (confirm('确定要退出登录吗？')) {
+                            loginBtn.textContent = '登录';
+                            loginBtn.classList.remove('btn-primary');
+                            loginBtn.classList.add('btn-outline');
+                            loginBtn.style.pointerEvents = 'auto';
+
+                            registerBtn.textContent = '注册';
+                            registerBtn.onclick = function() {
+                                registerModal.classList.add('active');
+                            };
+                        }
+                    };
+                } else {
+                    alert('请输入用户名和密码');
+                }
+            });
+
+            document.getElementById('registerForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('registerUsername').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                // 验证用户名长度
+                if (username.length < 4 || username.length > 16) {
+                    alert('用户名长度需在4-16个字符之间');
+                    return;
+                }
+
+                // 验证密码长度
+                if (password.length < 6) {
+                    alert('密码长度至少为6位');
+                    return;
+                }
+
+                // 验证两次密码是否一致
+                if (password !== confirmPassword) {
+                    alert('两次输入的密码不一致');
+                    return;
+                }
+
+                // 验证邮箱格式
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('请输入有效的电子邮箱地址');
+                    return;
+                }
+
+                // 注册成功
+                alert(`恭喜，${username}！注册成功，请登录`);
+                registerModal.classList.remove('active');
+                loginModal.classList.add('active');
+            });
+
+            // 简单的滚动动画效果
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.section-title, .feature-card, .case-card, .video-card, .subscribe-box')
+                .forEach(el => {
+                    observer.observe(el);
+                });
+
+            // 视频播放控制
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const videoThumbnail = this.closest('.video-thumbnail');
+                    const video = videoThumbnail.querySelector('.video-player');
+                    const poster = videoThumbnail.querySelector('.video-poster');
+                    
+                    if (video.paused) {
+                        video.play();
+                        this.innerHTML = '<i class="fas fa-pause"></i>';
+                        this.style.backgroundColor = 'rgba(199, 0, 11, 0.8)';
+                        this.querySelector('i').style.color = '#fff';
+                        
+                        // 播放时隐藏封面图
+                        if(poster) {
+                            poster.style.display = 'none';
+                        }
+                    } else {
+                        video.pause();
+                        this.innerHTML = '<i class="fas fa-play"></i>';
+                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                        this.querySelector('i').style.color = 'var(--primary)';
+                        
+                        // 暂停时显示封面图
+                        if(poster) {
+                            poster.style.display = 'block';
+                        }
+                    }
+                });
+            });
+            
+            // 视频结束事件处理
+            document.querySelectorAll('.video-player').forEach(video => {
+                video.addEventListener('ended', function() {
+                    const btn = this.closest('.video-thumbnail').querySelector('.play-btn');
+                    const poster = this.closest('.video-thumbnail').querySelector('.video-poster');
+                    
+                    btn.innerHTML = '<i class="fas fa-play"></i>';
+                    btn.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                    btn.querySelector('i').style.color = 'var(--primary)';
+                    
+                    // 显示封面图
+                    if(poster) {
+                        poster.style.display = 'block';
+                    }
+                });
+                
+                // 视频播放时隐藏封面
+                video.addEventListener('play', function() {
+                    const poster = this.closest('.video-thumbnail').querySelector('.video-poster');
+                    if(poster) {
+                        poster.style.display = 'none';
+                    }
+                });
+                
+                // 视频暂停时显示封面
+                video.addEventListener('pause', function() {
+                    const poster = this.closest('.video-thumbnail').querySelector('.video-poster');
+                    if(poster && this.paused && !this.ended) {
+                        poster.style.display = 'block';
+                    }
+                });
+            });
+            
+            // 回到顶部按钮
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

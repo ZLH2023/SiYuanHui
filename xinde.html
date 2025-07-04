@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心得体会 - 思源汇 | 思政案例分享平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式（与首页相同） */
+        :root {
+            --primary: #c7000b;
+            --primary-dark: #9e0000;
+            --primary-light: #ff5a5f;
+            --secondary: #f5f5f5;
+            --accent: #ffc107;
+            --dark: #333;
+            --light: #fff;
+            --gray: #f0f0f0;
+            --text: #444;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Microsoft YaHei', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles (与首页相同) */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--light);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        .back-to-top i {
+            font-size: 1.5rem;
+        }
+
+        /* 心得体会页面特有样式 */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470') center/cover;
+            opacity: 0.2;
+        }
+
+        .page-banner h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .page-banner p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* 内容区域 */
+        .content-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .sidebar {
+            flex: 1;
+        }
+
+        /* 心得体会卡片 */
+        .experience-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 为所有卡片添加悬停效果 */
+        .main-content .experience-card {
+            position: relative;
+            overflow: visible;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .main-content .experience-card:hover {
+            transform: translateX(-25px);
+            z-index: 100;
+            box-shadow: 0 15px 35px rgba(199, 0, 11, 0.25);
+            width: calc(100% + 25px);
+        }
+        
+        .main-content .experience-card:hover .experience-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+        
+        .main-content .experience-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -25px;
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+            border-radius: 10px 0 0 10px;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .main-content .experience-card:hover::after {
+            opacity: 1;
+        }
+        
+        .main-content .experience-card:hover .experience-content {
+            max-height: none;
+        }
+        
+        .main-content .experience-card:hover .read-more {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .experience-header {
+            padding: 25px;
+            background: var(--primary);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-header h3 {
+            color: var(--light);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover .experience-header h3 {
+            transform: translateX(5px);
+        }
+
+        .experience-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: transform 0.3s ease 0.1s;
+        }
+
+        .experience-card:hover .experience-meta {
+            transform: translateX(8px);
+        }
+
+        .experience-body {
+            padding: 25px;
+            position: relative;
+        }
+
+        .experience-body p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .experience-content {
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .experience-content.expanded {
+            max-height: none;
+        }
+
+        .read-more {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 40px 0 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9), white);
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover .read-more {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .experience-footer {
+            padding: 15px 25px;
+            background: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover .experience-footer {
+            background: #f9f9f9;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover .tags {
+            transform: translateX(8px);
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--light);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover .tag {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .interactions {
+            display: flex;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover .interactions {
+            transform: translateX(8px);
+        }
+
+        .interaction-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .interaction-btn:hover {
+            color: var(--primary);
+        }
+
+        /* 侧边栏 */
+        .sidebar-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .popular-list {
+            list-style: none;
+        }
+
+        .popular-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popular-item:last-child {
+            border-bottom: none;
+        }
+
+        .popular-item a {
+            display: flex;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .popular-item a:hover {
+            color: var(--primary);
+        }
+
+        .popular-item .date {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category {
+            background: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .category:hover {
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+        }
+
+        .category.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(199, 0, 11, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        /* 投稿按钮 */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #ffb300;
+            transform: translateY(-3px);
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .pagination ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .pagination li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background: white;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .pagination li a:hover, .pagination li a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer (与首页相同) */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .experience-header h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .page-banner h1 {
+                font-size: 2.2rem;
+            }
+            
+            .experience-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            /* 在移动设备上减少悬停效果 */
+            .main-content .experience-card:hover {
+                transform: translateX(-10px);
+                width: calc(100% + 10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .experience-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .interactions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .page-banner h1 {
+                font-size: 1.8rem;
+            }
+            
+            /* 在更小的设备上移除悬停效果 */
+            .main-content .experience-card:hover {
+                transform: translateY(-5px);
+                width: 100%;
+            }
+        }
+        
+        /* 投稿表单样式 */
+        .submit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .submit-modal.show {
+            display: flex;
+        }
+        
+        .submit-form {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .submit-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .submit-header h2 {
+            color: white;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        
+        .submit-body {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus, 
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(199, 0, 11, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        
+        .submit-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .btn-cancel {
+            background: #ddd;
+            color: var(--dark);
+        }
+        
+        .btn-cancel:hover {
+            background: #ccc;
+        }
+        
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open fa-2x"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>思源汇</h1>
+                    <p>思政案例分享平台 · 弘扬社会主义核心价值观</p>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="anli.html">案例库</a></li>
+                    <li><a href="xinde.html" class="active">心得体会</a></li>
+                    <li><a href="huodong.html">活动报道</a></li>
+                    <li><a href="shiping.html">视频访谈</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 心得体会页面内容 -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>思政教育心得体会</h1>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享思政教育工作者和参与者的实践感悟与思考，交流教学经验，促进共同成长</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="content-container">
+            <!-- 主内容区 -->
+            <div class="main-content">
+                <!-- 心得体会1 - 添加了悬停动画效果 -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>在思政教育中融入红色文化的实践与思考</h3>
+                        <div class="experience-meta">
+                            <span><i class="fas fa-user"></i> 张明 | 高校思政教师</span>
+                            <span><i class="fas fa-calendar"></i> 2023年6月15日</span>
+                            <span><i class="fas fa-eye"></i> 1,245次阅读</span>
+                        </div>
+                    </div>
+                    <div class="experience-body">
+                        <div class="experience-content">
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为一名高校思政教师，我始终思考如何让思政教育真正入脑入心。在过去一年的教学实践中，我尝试将地方红色文化资源融入思政课堂，取得了意想不到的效果</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;红色文化是中国共产党领导人民在革命、建设和改革中创造的宝贵精神财富。但在实际教学中，我发现学生对红色文化存在距离感，认为这些内容"过时"、"枯燥"。如何改变这一现状？</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先，我改变了传统的讲授方式。不再局限于课堂内的理论灌输，而是带领学生走出校园，开展"行走的思政课"。我们先后参观了本地的革命纪念馆、烈士陵园和革命遗址，邀请老党员讲述亲身经历</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其次，我鼓励学生成为红色文化的传播者。通过组建"红色讲解员"团队，让学生自己搜集资料、编写讲解词，向其他同学和社区居民讲解红色故事。这一过程不仅加深了学生对红色文化的理解</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在实践过程中，我们注意将红色文化与学生生活实际相结合。比如组织"红色家书诵读会"，让学生从革命先辈的家书中感受家国情怀；开展"红色主题微电影创作"，让学生用现代方式诠释红色精神</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过这些实践，我深刻体会到：红色文化不是冰冷的陈列品，而是有温度的精神财富。当学生真正参与其中，成为红色文化的体验者和传播者时，教育效果才能最大化</p>
+                        </div>
+                    </div>
+                    <div class="experience-footer">
+                        <div class="tags">
+                            <span class="tag">红色文化</span>
+                            <span class="tag">教学创新</span>
+                            <span class="tag">实践教学</span>
+                            <span class="tag">爱国主义教育</span>
+                        </div>
+                        <div class="interactions">
+                            <button class="interaction-btn"><i class="far fa-thumbs-up"></i> 点赞 (86)</button>
+                            <button class="interaction-btn"><i class="far fa-comment"></i> 评论 (24)</button>
+                            <button class="interaction-btn"><i class="fas fa-share-alt"></i> 分享</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 心得体会2 - 添加了悬停动画效果 -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>思政教育在专业课程中的融合路径探索</h3>
+                        <div class="experience-meta">
+                            <span><i class="fas fa-user"></i> 李华 | 工科专业教师</span>
+                            <span><i class="fas fa-calendar"></i> 2023年5月28日</span>
+                            <span><i class="fas fa-eye"></i> 982次阅读</span>
+                        </div>
+                    </div>
+                    <div class="experience-body">
+                        <div class="experience-content">
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为机械工程专业的教师，我曾长期认为思政教育是思政课教师的任务。但在参与学校课程思政建设后，我深刻认识到专业课程同样肩负着育人使命</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在《机械设计》课程中，我尝试将思政元素融入专业知识教学。例如，在讲授机械发展史时，重点介绍我国古代机械制造的辉煌成就和近代机械工业的艰难发展历程</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在讲解现代机械设计理念时，我特别强调工匠精神的重要性。通过播放"大国工匠"纪录片片段，邀请企业技能大师进课堂，让学生理解精益求精的职业态度</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最让我惊喜的是，这种融合不仅没有影响专业知识教学，反而激发了学生的学习热情。学生在课程设计中更加注重创新性和实用性，有小组设计了针对残疾人的辅助机械装置</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过这一实践，我认识到课程思政不是简单地在专业课程中加入思政元素，而是要找到专业知识与思政教育的结合点，使二者自然融合、相得益彰</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未来，我计划在课程中增加更多中国制造案例，让学生了解我国制造业的发展成就，增强民族自豪感和责任感</p>
+                        </div>
+                    </div>
+                    <div class="experience-footer">
+                        <div class="tags">
+                            <span class="tag">课程思政</span>
+                            <span class="tag">专业教育</span>
+                            <span class="tag">工匠精神</span>
+                            <span class="tag">中国制造</span>
+                        </div>
+                        <div class="interactions">
+                            <button class="interaction-btn"><i class="far fa-thumbs-up"></i> 点赞 (72)</button>
+                            <button class="interaction-btn"><i class="far fa-comment"></i> 评论 (18)</button>
+                            <button class="interaction-btn"><i class="fas fa-share-alt"></i> 分享</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <div class="sidebar">
+                <!-- 搜索框 -->
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索心得体会...">
+                </div>
+
+                <!-- 热门文章 -->
+                <div class="sidebar-card">
+                    <h3>热门心得体会</h3>
+                    <ul class="popular-list">
+                        <li class="popular-item">
+                            <a href="https://www.fx361.cc/page/2022/0324/10179824.shtml">
+                                <div>
+                                    <div>思政教育中情感认同的培养路径</div>
+                                    <div class="date">2023-06-08 | 1,402次阅读</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item">
+                            <a href="https://jsjjb.xhby.net/pad/con/202501/03/content_1408940.html">
+                                <div>
+                                    <div>数字技术赋能思政教育的实践探索</div>
+                                    <div class="date">2023-05-30 | 1,325次阅读</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item">
+                            <a href="http://news.china.com.cn/2025-05/23/content_109388541.shtml">
+                                <div>
+                                    <div>高职院校工匠精神培育的实践与思考</div>
+                                    <div class="date">2023-05-18 | 1,156次阅读</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item">
+                            <a href="https://edu.jxnews.com.cn/system/2025/07/02/020919298.shtml">
+                                <div>
+                                    <div>社区思政教育的创新模式探索</div>
+                                    <div class="date">2023-04-28 | 987次阅读</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item">
+                            <a href="https://www.cqcb.com/health/jiankangyixian/2025-03-26/5799121_pc.html">
+                                <div>
+                                    <div>课程思政在医学教育中的实践</div>
+                                    <div class="date">2023-04-15 | 932次阅读</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 投稿按钮 -->
+                <button id="submitBtn" class="submit-btn"><i class="fas fa-pen"></i> 分享您的心得体会</button>
+            </div>
+        </div>
+
+        <!-- 分页控件 -->
+        <div class="pagination">
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- 投稿模态框 -->
+    <div class="submit-modal" id="submitModal">
+        <div class="submit-form">
+            <div class="submit-header">
+                <h2>分享心得体会</h2>
+                <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="submit-body">
+                <div class="form-group">
+                    <label for="title">心得体会标题</label>
+                    <input type="text" id="title" placeholder="请输入标题...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">作者</label>
+                    <input type="text" id="author" placeholder="您的姓名和身份...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">分类</label>
+                    <select id="category">
+                        <option value="">请选择分类</option>
+                        <option value="教学感悟">教学感悟</option>
+                        <option value="课程思政">课程思政</option>
+                        <option value="社会实践">社会实践</option>
+                        <option value="红色教育">红色教育</option>
+                        <option value="传统文化">传统文化</option>
+                        <option value="职业素养">职业素养</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">心得体会内容</label>
+                    <textarea id="content" placeholder="请分享您的实践感悟与思考..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tags">标签（用逗号分隔）</label>
+                    <input type="text" id="tags" placeholder="例如：红色文化,教学创新,实践教学">
+                </div>
+            </div>
+            <div class="submit-actions">
+                <button class="btn btn-cancel" id="cancelSubmit">取消</button>
+                <button class="btn btn-submit">提交分享</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>思政案例分享平台</h3>
+                    <p>致力于打造全国最专业的思政教育资源分享平台，为思政教育工作者提供丰富的教学资源和实践参考。</p>
+                </div>
+            </div>
+    
+            <div class="copyright">
+                <p>&copy; 2025 思政案例分享平台 版权所有 | 赵利宏20235104163</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <script>
+        // 回到顶部功能
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 展开/收起文章功能
+        // document.querySelectorAll('.read-more').forEach(btn => {
+        //     btn.addEventListener('click', function() {
+        //         const content = this.previousElementSibling;
+        //         if (content.classList.contains('expanded')) {
+        //             content.classList.remove('expanded');
+        //             this.innerHTML = '展开阅读全文 <i class="fas fa-angle-down"></i>';
+        //         } else {
+        //             content.classList.add('expanded');
+        //             this.innerHTML = '收起全文 <i class="fas fa-angle-up"></i>';
+        //         }
+        //     });
+        // });
+        
+        // 点赞功能
+        document.querySelectorAll('.interaction-btn .fa-thumbs-up').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const countElement = this.nextElementSibling;
+                if (countElement) {
+                    let count = parseInt(countElement.textContent.match(/\d+/)[0]);
+                    count++;
+                    countElement.textContent = `点赞 (${count})`;
+                    this.style.color = '#c7000b';
+                }
+            });
+        });
+        
+        // 分享功能
+        document.querySelectorAll('.interaction-btn .fa-share-alt').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.experience-card');
+                const title = card.querySelector('.experience-header h3').textContent;
+                
+                alert(`分享文章：${title}\n链接：${window.location.href}`);
+            });
+        });
+        
+        // 投稿功能
+        const submitBtn = document.getElementById('submitBtn');
+        const submitModal = document.getElementById('submitModal');
+        const closeModal = document.getElementById('closeModal');
+        const cancelSubmit = document.getElementById('cancelSubmit');
+        
+        submitBtn.addEventListener('click', () => {
+            submitModal.classList.add('show');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            submitModal.classList.remove('show');
+        });
+        
+        cancelSubmit.addEventListener('click', () => {
+            submitModal.classList.remove('show');
+        });
+        
+        // 点击模态框外部关闭
+        submitModal.addEventListener('click', (e) => {
+            if (e.target === submitModal) {
+                submitModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
